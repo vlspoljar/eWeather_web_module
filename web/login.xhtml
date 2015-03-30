@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html" locale="#{localization.validLocalization}">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>#{i18n.login_title}</title>
+            </f:facet>
+
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    #{i18n.login_header}
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    #{i18n.login_footer}
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="#{i18n.login_pages}">
+                            <p:menuitem value="#{i18n.login_registration}" outcome="registration"/>
+                        </p:submenu>
+                        <p:submenu label="#{i18n.login_settings}">
+                            <p:menuitem value="#{i18n.login_languageSelection}" outcome="eWeather"/>
+                        </p:submenu>
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <h:form>
+                        <p:panel header="#{i18n.login_eWeatherUserLogin}">
+
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputLabel for="username" value="#{i18n.login_username}" />
+                                <p:inputText id="username" value="#{login.username}" label="#{i18n.login_username}" required="true"/>
+                                
+                                <h:outputLabel for="password" value="#{i18n.login_password}" />
+                                <p:password id="password" value="#{login.password}" label="#{i18n.login_password}" required="true"/>
+                                
+                            </h:panelGrid>
+                            
+                            <p:commandButton value="#{i18n.login_login}" ajax="false" icon="ui-icon-check" validateClient="true" action="#{login.login()}"/>
+                            
+                        </p:panel>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

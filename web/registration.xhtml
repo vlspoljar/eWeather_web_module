@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html" locale="#{localization.validLocalization}">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>#{i18n.registration_title}</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    #{i18n.registration_header}
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    #{i18n.registration_footer}
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="#{i18n.registration_pages}">
+                            <p:menuitem value="#{i18n.registration_login}" outcome="login"/>
+                        </p:submenu>
+                        <p:submenu label="#{i18n.registration_settings}">
+                            <p:menuitem value="#{i18n.registration_languageSelection}" outcome="eWeather"/>
+                        </p:submenu>
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <h:form>
+                        <p:panel header="#{i18n.registration_eWeatherUserRegistration}">           
+
+                            <h:panelGrid columns="4" cellpadding="5">
+                                <h:outputLabel for="firstname" value="#{i18n.registration_firstname}" />
+                                <p:inputText id="firstname" value="#{registration.firstname}" label="#{i18n.registration_firstname}"/>
+                                <p:message for="firstname" />
+                                <h:outputText value="#{registration.firstname}" />
+
+                                <h:outputLabel for="surname" value="#{i18n.registration_surname}" />
+                                <p:inputText id="surname" value="#{registration.surname}" label="#{i18n.registration_surname}"/>
+                                <p:message for="surname" />
+                                <h:outputText value="#{registration.surname}" />
+
+                                <h:outputLabel for="username" value="#{i18n.registration_username}" />
+                                <p:inputText id="username" value="#{registration.username}" label="#{i18n.registration_username}"/>
+                                <p:message for="username" />
+                                <h:outputText value="#{registration.username}" />
+
+                                <h:outputLabel for="password" value="#{i18n.registration_password}" />
+                                <p:password id="password" value="#{registration.password}" label="#{i18n.registration_password}" required="true" match="repeatedPassword" feedback="true"
+                                            promptLabel="#{i18n.registration_promptLabel}" weakLabel="#{i18n.registration_weakLabel}" goodLabel="#{i18n.registration_goodLabel}" strongLabel="#{i18n.registration_strongLabel}"/>
+                                <p:message for="password" />
+                                <h:outputText value="#{registration.password}" />
+
+                                <h:outputLabel for="repeatedPassword" value="#{i18n.registration_repeatedPassword}" />
+                                <p:password id="repeatedPassword" value="#{registration.repeatedPassword}" label="#{i18n.registration_repeatedPassword}" required="true"/>
+                                <p:message for="repeatedPassword" />
+                                <h:outputText value="#{registration.repeatedPassword}" />
+
+                                <h:outputLabel for="email" value="#{i18n.registration_email}" />
+                                <p:inputText id="email" value="#{registration.email}" label="#{i18n.registration_email}"/>
+                                <p:message for="email" />
+                                <h:outputText value="#{registration.email}" />
+
+                                <h:outputLabel for="gender" value="#{i18n.registration_gender}" />
+                                <h:selectOneMenu id="gender" value="#{registration.gender}" required="true" label="#{i18n.registration_gender}">
+                                    <f:selectItem itemLabel="#{i18n.registration_selectOne}" itemValue="" noSelectionOption="true" />
+                                    <f:selectItem itemLabel="#{i18n.registration_genderFemale}" itemValue="1" />
+                                    <f:selectItem itemLabel="#{i18n.registration_genderMale}" itemValue="2" />
+                                </h:selectOneMenu>
+                                <p:message for="gender" />
+                                <h:outputText value="#{registration.gender}" />
+
+                                <p:outputLabel for="dateOfBirth" value="#{i18n.registration_dateOfBirth}" />
+                                <p:calendar id="dateOfBirth" value="#{registration.dateOfBirth}">
+                                    <f:convertDateTime pattern="dd.MM.yyyy." />
+                                </p:calendar>
+
+                            </h:panelGrid>
+
+                            <p:commandButton value="#{i18n.registration_register}" ajax="false" icon="ui-icon-check" validateClient="true" action="#{registration.saveUser()}"/>
+
+                        </p:panel>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
